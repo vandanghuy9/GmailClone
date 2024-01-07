@@ -10,8 +10,11 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.LinearLayout
 import android.widget.ListView
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.gmailclone.databinding.ActivityMainBinding
 
 
@@ -20,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.content_main)
+        setContentView(R.layout.activity_main)
         val itemList = arrayListOf<ItemModel>()
         for (i in 1..13){
             itemList.add(
@@ -30,8 +33,9 @@ class MainActivity : AppCompatActivity() {
                 )
             )
         }
-        val adapter = MyCustomAdapter(itemList)
-        val listView = findViewById<ListView>(R.id.listView)
+        val adapter = RCItemAdapter(itemList)
+        val listView: RecyclerView = findViewById<RecyclerView>(R.id.rcView)
+        listView.layoutManager = LinearLayoutManager(this)
         listView.adapter = adapter
     }
 
